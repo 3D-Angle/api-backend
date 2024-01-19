@@ -16,10 +16,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('username')->nullable();
             $table->string('email')->unique()->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->tinyInteger('role')->default('99');
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });
