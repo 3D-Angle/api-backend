@@ -27,7 +27,7 @@
                     @csrf
 
                     <div class="form-body">
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-4">
                                 <label>Name <span class="text-danger">*</span></label>
                             </div>
@@ -35,7 +35,7 @@
                             <div class="col-md-8 form-group">
                                 <input type="text" id="name" class="form-control  @error('name') is-invalid @enderror" name="name" placeholder="Name" value="{{ old('name') ? old('name') : $user->name }}">
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="row">
                             <div class="col-md-4">
