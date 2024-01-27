@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Models;
+// @formatter:off
+/**
+ * A helper file for your Eloquent Models
+ * Copy the phpDocs from this file to the correct Model,
+ * And remove them from this file, to prevent double declarations.
+ *
+ * @author Barry vd. Heuvel <barryvdh@gmail.com>
+ */
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
+namespace App\Models{
 /**
  * App\Models\User
  *
@@ -46,55 +48,31 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()
  * @mixin \Eloquent
+ * @property int $is_registered
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\VerificationUser> $verifications
+ * @property-read int|null $verifications_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereIsRegistered($value)
  */
-class User extends Authenticatable
-{
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    // protected $fillable = [
-    //     'name',
-    //     'username',
-    //     'email',
-    //     'password',
-    //     'role',
-    // ];
-    protected $guarded = [
-        'id',
-        'created_at'
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
-
-    /**
-     * Get all of the verifications for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function verifications()
-    {
-        return $this->hasMany(VerificationUser::class, 'user_id', 'id');
-    }
+	class User extends \Eloquent {}
 }
+
+namespace App\Models{
+/**
+ * App\Models\VerificationUser
+ *
+ * @property int $id
+ * @property string|null $code
+ * @property int|null $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|VerificationUser newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|VerificationUser newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|VerificationUser query()
+ * @method static \Illuminate\Database\Eloquent\Builder|VerificationUser whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VerificationUser whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VerificationUser whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|VerificationUser whereUserId($value)
+ */
+	class VerificationUser extends \Eloquent {}
+}
+

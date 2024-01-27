@@ -33,7 +33,7 @@ class UserController extends Controller
         $request->validate([
             'role' => 'required',
             'email'=>'required|unique:users,email,NULL,id,deleted_at,NULL|email:rfc,filter',
-            'name'=>'required',
+            // 'name'=>'required',
             'username'=>'required|without_spaces|unique:users,username,NULL,id,deleted_at,NULL',
             'password'=>'required|without_spaces|min:8',
         ]);
@@ -75,7 +75,7 @@ class UserController extends Controller
         $request->validate([
             'role' => 'required',
             'email'=>'required|unique:users,email,'.$id.',id,deleted_at,NULL|email:rfc,filter',
-            'name'=>'required',
+            // 'name'=>'required',
             'username'=>'required|without_spaces|unique:users,username,'.$id.',id,deleted_at,NULL',
             'password'=>'nullable|without_spaces|min:8',
         ]);
